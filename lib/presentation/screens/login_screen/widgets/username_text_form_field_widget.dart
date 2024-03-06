@@ -34,6 +34,7 @@ class _UsernameTextFormFieldWidgetState
           color: colorScheme.onBackground,
         ),
       ),
+      textCapitalization: TextCapitalization.words,
       onChanged: ref.read(loginScreenProvider.notifier).changeUsername,
       cursorColor: colorScheme.secondary,
       style: textTheme.bodySmall,

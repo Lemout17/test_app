@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_app/presentation/core/navigation/routes_constants.dart';
 import 'package:test_app/presentation/core/widgets/button_widget.dart';
-import 'package:test_app/presentation/screens/home_screen/home_screen.dart';
+import 'package:test_app/presentation/screens/main_screen/main_screen.dart';
 import 'package:test_app/presentation/screens/login_screen/provider/login_screen_provider.dart';
 import 'package:test_app/presentation/screens/login_screen/widgets/username_text_form_field_widget.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
-
-  static const String route = '/preview_screen';
 
   @override
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
@@ -27,8 +26,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
       if (prev?.isLoading != current.isLoading && !current.isLoading) {
         Navigator.of(context).pushNamed(
-          HomeScreen.route,
-          arguments: HomeScreenArguments(username: username),
+          RoutesConstants.main,
+          arguments: MainScreenArguments(username: username),
         );
       }
     });

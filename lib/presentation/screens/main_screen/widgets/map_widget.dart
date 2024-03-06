@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/presentation/screens/home_screen/widgets/map_no_connection_widget.dart';
+import 'package:test_app/presentation/screens/main_screen/widgets/map_no_connection_widget.dart';
 
 class MapWidget extends StatelessWidget {
   const MapWidget({
@@ -16,11 +16,13 @@ class MapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * 0.395,
       width: width,
       padding: EdgeInsets.symmetric(
         vertical: height * 0.065,
         horizontal: width * 0.066,
+      ),
+      constraints: BoxConstraints(
+        minHeight: height * 0.395,
       ),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(

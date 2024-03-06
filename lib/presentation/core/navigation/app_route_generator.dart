@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/presentation/screens/home_screen/home_screen.dart';
+import 'package:test_app/presentation/core/navigation/routes_constants.dart';
+import 'package:test_app/presentation/screens/main_screen/main_screen.dart';
 import 'package:test_app/presentation/screens/login_screen/login_screen.dart';
 
 class Navigation {
@@ -7,17 +8,17 @@ class Navigation {
     final args = settings.arguments;
 
     switch (settings.name) {
-      case HomeScreen.route:
-        if (args is HomeScreenArguments) {
+      case RoutesConstants.main:
+        if (args is MainScreenArguments) {
           return MaterialPageRoute(
-            builder: (_) => HomeScreen(
+            builder: (_) => MainScreen(
               username: args.username,
             ),
             settings: settings,
           );
         }
         return _errorRoute();
-      case LoginScreen.route:
+      case RoutesConstants.login:
         return MaterialPageRoute(
           builder: (_) => const LoginScreen(),
         );
