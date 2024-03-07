@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomBottomNavigationBarItem extends StatelessWidget {
-  const CustomBottomNavigationBarItem({
+class CustomBottomNavBarItem extends StatelessWidget {
+  const CustomBottomNavBarItem({
     required this.icon,
     required this.title,
     required this.isSelected,

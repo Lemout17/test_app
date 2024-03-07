@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/presentation/core/widgets/button_widget.dart';
-import 'package:test_app/presentation/screens/main_screen/widgets/hero_widget.dart';
-import 'package:test_app/presentation/screens/main_screen/widgets/map_widget.dart';
+import 'package:test_app/presentation/screens/home_tab/widgets/hero_widget.dart';
+import 'package:test_app/presentation/screens/home_tab/widgets/map_widget.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({

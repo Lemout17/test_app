@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/presentation/screens/main_screen/widgets/map_no_connection_widget.dart';
+import 'package:test_app/presentation/screens/home_tab/widgets/map_no_connection_widget.dart';
 
 class MapWidget extends StatelessWidget {
   const MapWidget({

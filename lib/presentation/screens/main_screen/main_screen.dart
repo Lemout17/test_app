@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,11 +7,11 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:test_app/core/network_connection_provider/network_connection_provider.dart';
 import 'package:test_app/core/network_connection_provider/network_connection_state.dart';
 import 'package:test_app/presentation/core/resources/app_icons.dart';
-import 'package:test_app/presentation/screens/applications_screen/applications_screen.dart';
-import 'package:test_app/presentation/screens/main_screen/home_tab.dart';
-import 'package:test_app/presentation/screens/personal_info_screen/personal_info_screen.dart';
+import 'package:test_app/presentation/screens/applications_tab/applications_tab.dart';
+import 'package:test_app/presentation/screens/home_tab/home_tab.dart';
+import 'package:test_app/presentation/screens/personal_info_tab/personal_info_tab.dart';
 
-import 'widgets/custom_bottom_nav_bar.dart';
+import 'widgets/custom_bottom_nav_bar_item.dart';
 
 enum MainScreenTabs {
   applications,
@@ -81,6 +82,7 @@ class _HomeScreenState extends ConsumerState<MainScreen> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final TextTheme textTheme = Theme.of(context).textTheme;
     final Size size = MediaQuery.of(context).size;
+    log('height - ${size.height}');
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -109,19 +111,19 @@ class _HomeScreenState extends ConsumerState<MainScreen> {
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          CustomBottomNavigationBarItem(
+          CustomBottomNavBarItem(
             icon: AppIcons.clipboard_list,
             isSelected: _currentPage == MainScreenTabs.applications,
             title: 'Заявки',
             onTap: () => _onIconTabTap(MainScreenTabs.applications),
           ),
-          CustomBottomNavigationBarItem(
+          CustomBottomNavBarItem(
             icon: AppIcons.home,
             isSelected: _currentPage == MainScreenTabs.home,
             title: 'Головна',
             onTap: () => _onIconTabTap(MainScreenTabs.home),
           ),
-          CustomBottomNavigationBarItem(
+          CustomBottomNavBarItem(
             icon: AppIcons.user,
             isSelected: _currentPage == MainScreenTabs.personalInfo,
             title: 'Особисті дані',

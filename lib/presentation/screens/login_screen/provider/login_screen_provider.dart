@@ -15,8 +15,6 @@ class LoginScreenNotifier extends StateNotifier<LoginScreenState> {
       isLoading: true,
     );
 
-    await Future.delayed(const Duration(seconds: 1));
-
     state = state.copyWith(
       isLoading: false,
     );
