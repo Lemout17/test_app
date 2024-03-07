@@ -19,6 +19,9 @@ class HeroWidget extends StatelessWidget {
         horizontal: 22,
         vertical: 20,
       ),
+      constraints: const BoxConstraints(
+        minHeight: 185,
+      ),
       decoration: BoxDecoration(
         color: colorScheme.secondary,
         borderRadius: const BorderRadius.only(
