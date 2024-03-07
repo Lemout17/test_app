@@ -1,34 +1,31 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:test_app/core/network_connection_provider/network_connection_state.dart';
 
 class NetworkConnectionNotifier extends StateNotifier<NetworkConnectionState> {
-  NetworkConnectionNotifier()
-      : super(NetworkConnectionState(
-          networkStream: InternetConnectionChecker().onStatusChange,
-        )) {
-    listenConnection();
+  NetworkConnectionNotifier() : super(NetworkConnectionState()) {
+    _subscription =
+        InternetConnectionChecker().onStatusChange.listen(_listener);
   }
 
-  void listenConnection() {
-    InternetConnectionChecker().onStatusChange.listen(
-      (InternetConnectionStatus status) {
-        switch (status) {
-          case InternetConnectionStatus.connected:
-            state = state.copyWith(
-              hasConnection: true,
-            );
-            break;
-          case InternetConnectionStatus.disconnected:
-            state = state.copyWith(hasConnection: false);
-            break;
-        }
-      },
+  late final StreamSubscription _subscription;
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
+
+  void _listener(InternetConnectionStatus status) {
+    state = state.copyWith(
+      hasConnection: status == InternetConnectionStatus.connected,
     );
   }
 }
 
-final networkConnectionProvider =
-    StateNotifierProvider<NetworkConnectionNotifier, NetworkConnectionState>(
+final networkConnectionProvider = StateNotifierProvider.autoDispose<
+    NetworkConnectionNotifier, NetworkConnectionState>(
   (ref) => NetworkConnectionNotifier(),
 );

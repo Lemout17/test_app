@@ -7,41 +7,34 @@ class HomeTab extends StatelessWidget {
   const HomeTab({
     super.key,
     required this.username,
-    required this.noInternet,
+    required this.isServiceAvailable,
   });
 
   final String username;
-  final bool noInternet;
+  final bool isServiceAvailable;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      final double height = constraints.maxHeight;
-      final double width = constraints.maxWidth;
-
-      return Center(
+    return SingleChildScrollView(
+      child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HeroWidget(
               username: username,
-              height: height,
-              width: width,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.058),
+              padding: const EdgeInsets.symmetric(horizontal: 22),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: height * 0.032,
+                  const SizedBox(
+                    height: 25,
                   ),
                   MapWidget(
-                    height: height,
-                    width: width,
-                    noInternet: noInternet,
+                    isServiceAvailable: isServiceAvailable,
                   ),
-                  SizedBox(
-                    height: height * 0.032,
+                  const SizedBox(
+                    height: 25,
                   ),
                   ButtonWidget(
                     buttonRadius: 19,
@@ -53,7 +46,7 @@ class HomeTab extends StatelessWidget {
             ),
           ],
         ),
-      );
-    });
+      ),
+    );
   }
 }

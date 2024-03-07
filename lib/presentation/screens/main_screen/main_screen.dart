@@ -1,11 +1,8 @@
-import 'dart:async';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:test_app/core/location_provider/location_provider.dart';
 import 'package:test_app/core/network_connection_provider/network_connection_provider.dart';
-import 'package:test_app/core/network_connection_provider/network_connection_state.dart';
 import 'package:test_app/presentation/core/resources/app_icons.dart';
 import 'package:test_app/presentation/screens/applications_tab/applications_tab.dart';
 import 'package:test_app/presentation/screens/home_tab/home_tab.dart';
@@ -43,36 +40,10 @@ class _HomeScreenState extends ConsumerState<MainScreen> {
   static const Curve curve = Curves.decelerate;
   final PageController _pageController =
       PageController(initialPage: _initialPage.index);
-  StreamSubscription? _subscription;
-  bool _noInternet = false;
   MainScreenTabs _currentPage = _initialPage;
 
   @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      NetworkConnectionState networkState = ref.read(networkConnectionProvider);
-
-      _subscription = networkState.networkStream?.listen((event) {
-        if (mounted) {
-          setState(() {
-            _noInternet = event == InternetConnectionStatus.disconnected;
-          });
-        }
-      });
-
-      if (!networkState.hasConnection && mounted) {
-        setState(() {
-          _noInternet = true;
-        });
-      }
-    });
-  }
-
-  @override
   void dispose() {
-    _subscription?.cancel();
     _pageController.dispose();
     super.dispose();
   }
@@ -82,7 +53,16 @@ class _HomeScreenState extends ConsumerState<MainScreen> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final TextTheme textTheme = Theme.of(context).textTheme;
     final Size size = MediaQuery.of(context).size;
-    log('height - ${size.height}');
+    final LocationPermission permission =
+        ref.watch(locationProvider).permission;
+    final bool hasConnection =
+        ref.watch(networkConnectionProvider).hasConnection;
+    final bool isGeolocatorServiceEnabled =
+        ref.watch(locationProvider).serviceEnabled;
+    final bool isServiceAvailable = (permission == LocationPermission.always ||
+            permission == LocationPermission.whileInUse) &&
+        hasConnection &&
+        isGeolocatorServiceEnabled;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -139,7 +119,7 @@ class _HomeScreenState extends ConsumerState<MainScreen> {
             const ApplicationsTab(),
             HomeTab(
               username: widget.username,
-              noInternet: _noInternet,
+              isServiceAvailable: isServiceAvailable,
             ),
             const PersonalInfoTab(),
           ],

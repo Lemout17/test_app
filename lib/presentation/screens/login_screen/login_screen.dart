@@ -34,52 +34,42 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final double height = constraints.maxHeight;
-            final double width = constraints.maxWidth;
-
-            return Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.058,
-                  vertical: height * 0.026,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 22,
+              vertical: 20,
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 68),
+                Text(
+                  'Як до вас звертатися?',
+                  style: textTheme.titleLarge,
                 ),
-                child: Column(
-                  children: [
-                    SizedBox(height: height * 0.088),
-                    Text(
-                      'Як до вас звертатися?',
-                      style: textTheme.titleLarge,
-                    ),
-                    SizedBox(height: height * 0.026),
-                    SizedBox(
-                      width: width * 0.685,
-                      child: Text(
-                        'Будь ласка, укажіть ваше ім\'я для персоналізації сервісу.',
-                        style: textTheme.titleSmall,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    SizedBox(height: height * 0.036),
-                    const UsernameTextFormFieldWidget(),
-                    const Spacer(),
-                    ButtonWidget(
-                      text: 'Продовжити',
-                      onPressed: username.isEmpty
-                          ? null
-                          : () {
-                              ref
-                                  .read(loginScreenProvider.notifier)
-                                  .sendUsername();
-                            },
-                      isLoading: isLoading,
-                    ),
-                  ],
+                const SizedBox(height: 20),
+                SizedBox(
+                  child: Text(
+                    'Будь ласка, укажіть ваше ім\'я для\nперсоналізації сервісу.',
+                    style: textTheme.titleSmall,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-            );
-          },
+                const SizedBox(height: 28),
+                const UsernameTextFormFieldWidget(),
+                const Spacer(),
+                ButtonWidget(
+                  text: 'Продовжити',
+                  onPressed: username.isEmpty
+                      ? null
+                      : () {
+                          ref.read(loginScreenProvider.notifier).sendUsername();
+                        },
+                  isLoading: isLoading,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

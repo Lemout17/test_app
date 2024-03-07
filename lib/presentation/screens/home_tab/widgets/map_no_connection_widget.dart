@@ -4,12 +4,7 @@ import 'package:test_app/presentation/core/resources/app_icons.dart';
 class MapNoConnectionWidget extends StatelessWidget {
   const MapNoConnectionWidget({
     super.key,
-    required this.height,
-    required this.width,
   });
-
-  final double height;
-  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +14,7 @@ class MapNoConnectionWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(height * 0.023),
+          padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
             color: colorScheme.outline,
             borderRadius: const BorderRadius.all(
@@ -32,26 +27,26 @@ class MapNoConnectionWidget extends StatelessWidget {
             size: 30,
           ),
         ),
-        SizedBox(height: height * 0.026),
+        const SizedBox(height: 20),
         Text(
           'Відсутній зв\'язок',
           style: textTheme.titleLarge,
         ),
-        SizedBox(height: height * 0.026),
+        const SizedBox(height: 20),
         Text(
           'Відсутність доступу до геолокації.\nПереконайтеся, що у додатку увімкнено\nгеолокацію та перевірте з\'єднання з Інтернетом.',
           style: textTheme.titleSmall,
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: height * 0.026),
+        const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Відсутній зв\'язок',
+              'Налаштування геолокації',
               style: textTheme.displaySmall,
             ),
-            SizedBox(width: width * 0.005),
+            const SizedBox(width: 2),
             Icon(
               Icons.arrow_forward_ios_outlined,
               size: 8,

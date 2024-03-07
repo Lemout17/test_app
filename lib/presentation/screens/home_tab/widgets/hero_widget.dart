@@ -4,13 +4,9 @@ class HeroWidget extends StatelessWidget {
   const HeroWidget({
     super.key,
     required this.username,
-    required this.height,
-    required this.width,
   });
 
   final String username;
-  final double height;
-  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +14,10 @@ class HeroWidget extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     return Container(
-      width: width,
-      padding: EdgeInsets.symmetric(
-        horizontal: width * 0.058,
-        vertical: height * 0.026,
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 22,
+        vertical: 20,
       ),
       decoration: BoxDecoration(
         color: colorScheme.secondary,
@@ -31,7 +27,7 @@ class HeroWidget extends StatelessWidget {
         ),
       ),
       child: Container(
-        padding: EdgeInsets.all(height * 0.032),
+        padding: const EdgeInsets.all(25),
         decoration: BoxDecoration(
           color: colorScheme.background,
           borderRadius: BorderRadius.circular(40),
@@ -57,19 +53,19 @@ class HeroWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: height * 0.026),
+            const SizedBox(height: 20),
             Text(
               'Додавання авто',
               style: textTheme.headlineSmall,
             ),
-            SizedBox(height: height * 0.013),
+            const SizedBox(height: 10),
             Text(
               'Завантажте дані про ваше авто для\nкращого використання сервісу.',
               style: textTheme.headlineMedium?.copyWith(
                 color: colorScheme.primary,
               ),
             ),
-            SizedBox(height: height * 0.033),
+            const SizedBox(height: 26),
             GestureDetector(
               onTap: () {},
               child: Row(
@@ -79,7 +75,7 @@ class HeroWidget extends StatelessWidget {
                     'Додати авто',
                     style: textTheme.displaySmall,
                   ),
-                  SizedBox(width: width * 0.005),
+                  const SizedBox(width: 2),
                   Icon(
                     Icons.arrow_forward_ios_outlined,
                     size: 8,
@@ -88,7 +84,7 @@ class HeroWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: height * 0.007),
+            const SizedBox(height: 6),
           ],
         ),
       ),

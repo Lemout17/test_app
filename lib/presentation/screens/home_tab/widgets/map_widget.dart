@@ -4,42 +4,35 @@ import 'package:test_app/presentation/screens/home_tab/widgets/map_no_connection
 class MapWidget extends StatelessWidget {
   const MapWidget({
     super.key,
-    required this.height,
-    required this.width,
-    required this.noInternet,
+    required this.isServiceAvailable,
   });
 
-  final double height;
-  final double width;
-  final bool noInternet;
+  final bool isServiceAvailable;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      padding: EdgeInsets.symmetric(
-        vertical: height * 0.065,
-        horizontal: width * 0.066,
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(
+        vertical: 50,
+        horizontal: 25,
       ),
-      constraints: BoxConstraints(
-        minHeight: height * 0.395,
+      constraints: const BoxConstraints(
+        minHeight: 304,
       ),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(
           Radius.circular(55),
         ),
         image: DecorationImage(
-          image: noInternet
+          image: !isServiceAvailable
               ? const AssetImage('assets/images/png/map_darkened.png')
               : const AssetImage('assets/images/png/map.png'),
           fit: BoxFit.cover,
         ),
       ),
-      child: noInternet
-          ? MapNoConnectionWidget(
-              height: height,
-              width: width,
-            )
+      child: !isServiceAvailable
+          ? const MapNoConnectionWidget()
           : const SizedBox(),
     );
   }

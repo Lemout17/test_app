@@ -17,8 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$NetworkConnectionState {
   bool get hasConnection => throw _privateConstructorUsedError;
-  Stream<InternetConnectionStatus>? get networkStream =>
-      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NetworkConnectionStateCopyWith<NetworkConnectionState> get copyWith =>
@@ -31,8 +29,7 @@ abstract class $NetworkConnectionStateCopyWith<$Res> {
           $Res Function(NetworkConnectionState) then) =
       _$NetworkConnectionStateCopyWithImpl<$Res, NetworkConnectionState>;
   @useResult
-  $Res call(
-      {bool hasConnection, Stream<InternetConnectionStatus>? networkStream});
+  $Res call({bool hasConnection});
 }
 
 /// @nodoc
@@ -50,17 +47,12 @@ class _$NetworkConnectionStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? hasConnection = null,
-    Object? networkStream = freezed,
   }) {
     return _then(_value.copyWith(
       hasConnection: null == hasConnection
           ? _value.hasConnection
           : hasConnection // ignore: cast_nullable_to_non_nullable
               as bool,
-      networkStream: freezed == networkStream
-          ? _value.networkStream
-          : networkStream // ignore: cast_nullable_to_non_nullable
-              as Stream<InternetConnectionStatus>?,
     ) as $Val);
   }
 }
@@ -74,8 +66,7 @@ abstract class _$$NetworkConnectionStateImplCopyWith<$Res>
       __$$NetworkConnectionStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool hasConnection, Stream<InternetConnectionStatus>? networkStream});
+  $Res call({bool hasConnection});
 }
 
 /// @nodoc
@@ -92,17 +83,12 @@ class __$$NetworkConnectionStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? hasConnection = null,
-    Object? networkStream = freezed,
   }) {
     return _then(_$NetworkConnectionStateImpl(
       hasConnection: null == hasConnection
           ? _value.hasConnection
           : hasConnection // ignore: cast_nullable_to_non_nullable
               as bool,
-      networkStream: freezed == networkStream
-          ? _value.networkStream
-          : networkStream // ignore: cast_nullable_to_non_nullable
-              as Stream<InternetConnectionStatus>?,
     ));
   }
 }
@@ -110,17 +96,15 @@ class __$$NetworkConnectionStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NetworkConnectionStateImpl implements _NetworkConnectionState {
-  _$NetworkConnectionStateImpl({this.hasConnection = true, this.networkStream});
+  _$NetworkConnectionStateImpl({this.hasConnection = true});
 
   @override
   @JsonKey()
   final bool hasConnection;
-  @override
-  final Stream<InternetConnectionStatus>? networkStream;
 
   @override
   String toString() {
-    return 'NetworkConnectionState(hasConnection: $hasConnection, networkStream: $networkStream)';
+    return 'NetworkConnectionState(hasConnection: $hasConnection)';
   }
 
   @override
@@ -129,13 +113,11 @@ class _$NetworkConnectionStateImpl implements _NetworkConnectionState {
         (other.runtimeType == runtimeType &&
             other is _$NetworkConnectionStateImpl &&
             (identical(other.hasConnection, hasConnection) ||
-                other.hasConnection == hasConnection) &&
-            (identical(other.networkStream, networkStream) ||
-                other.networkStream == networkStream));
+                other.hasConnection == hasConnection));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, hasConnection, networkStream);
+  int get hashCode => Object.hash(runtimeType, hasConnection);
 
   @JsonKey(ignore: true)
   @override
@@ -146,15 +128,11 @@ class _$NetworkConnectionStateImpl implements _NetworkConnectionState {
 }
 
 abstract class _NetworkConnectionState implements NetworkConnectionState {
-  factory _NetworkConnectionState(
-          {final bool hasConnection,
-          final Stream<InternetConnectionStatus>? networkStream}) =
+  factory _NetworkConnectionState({final bool hasConnection}) =
       _$NetworkConnectionStateImpl;
 
   @override
   bool get hasConnection;
-  @override
-  Stream<InternetConnectionStatus>? get networkStream;
   @override
   @JsonKey(ignore: true)
   _$$NetworkConnectionStateImplCopyWith<_$NetworkConnectionStateImpl>
